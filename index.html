@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DNA ⇄ Binary Converter & Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="logo">DN</div>
+      <div>
+        <h1>DNA ⇄ Binary Converter &amp; Analyzer</h1>
+        <p class="lead">Convert DNA to binary (2-bit), decimal, hexadecimal and decode back. Compute GC content and test sequences.</p>
+      </div>
+      <button id="toggleTheme" class="btn secondary" style="margin-left:auto">Toggle Theme</button>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <label for="dnaInput">DNA Sequence (A - 00, C - 01, G - 10, T - 11)</label>
+        <textarea id="dnaInput" rows="5" placeholder="Enter DNA sequence e.g. AGCTTAGG" spellcheck="false"></textarea>
+        <div class="controls">
+          <button class="btn" id="convertBtn">Convert →</button>
+          <button class="btn secondary" id="clearDna">Clear</button>
+          <button class="btn secondary" id="exampleBtn">Load Example</button>
+        </div>
+        <hr style="border-color:rgba(255,255,255,0.03); margin:12px 0">
+        <div style="display:grid; gap:10px">
+          <div>
+            <label>Binary (2-bit encoding)</label>
+            <div class="output" id="binaryOut">-</div>
+            <div style="margin-top:8px; display:flex; gap:8px">
+              <button class="btn secondary" id="copyBinary">Copy</button>
+              <button class="btn secondary" id="downloadBinary">Download .bin.txt</button>
+            </div>
+          </div>
+          <div style="display:flex; gap:8px">
+            <div style="flex:1">
+              <label>Decimal</label>
+              <div class="output" id="decimalOut">-</div>
+            </div>
+            <div style="flex:1">
+              <label>Hexadecimal</label>
+              <div class="output" id="hexOut">-</div>
+            </div>
+          </div>
+          <div>
+            <label>GC Content</label>
+            <div class="output" id="gcOut">-</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <label for="binaryInput">Binary Sequence (must be multiple of 2 bits)</label>
+        <textarea id="binaryInput" rows="5" placeholder="Enter binary e.g. 00100111" spellcheck="false"></textarea>
+        <div class="controls">
+          <button class="btn" id="decodeBtn">Decode →</button>
+          <button class="btn secondary" id="clearBinary">Clear</button>
+        </div>
+        <hr style="border-color:rgba(255,255,255,0.03); margin:12px 0">
+        <div>
+          <label>Decoded DNA</label>
+          <div class="output" id="dnaOut">-</div>
+        </div>
+        <div style="margin-top:12px" class="stat">
+          <div>
+            <div class="small muted">Sequence length</div>
+            <strong id="lenOut">-</strong>
+          </div>
+          <div>
+            <div class="small muted">Unique bases</div>
+            <strong id="uniqOut">-</strong>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="muted small">Validation & helpful hints: only A,C,G,T allowed for DNA. Binary length must be divisible by 2.</div>
+          <div><button class="btn secondary" id="swapBtn">Swap Inputs</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <label for="fastaInput">Load DNA from FASTA file:</label>
+      <input type="file" id="fastaInput" accept=".fasta,.fa,.txt" class="fileInput">
+      <div class="controls" style="margin-top:12px">
+        <button class="btn secondary" id="exportCsv">Export CSV</button>
+        <button class="btn secondary" id="exportJson">Export JSON</button>
+        <button class="btn secondary" id="downloadAll">Download All Results</button>
+      </div>
+    </div>
+
+    <footer>Tip: For long DNA sequences the Decimal/Hex outputs use BigInt so they may be long strings. This tool is for educational use.</footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
