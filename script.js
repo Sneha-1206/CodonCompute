@@ -1,3 +1,6 @@
+   document.addEventListener("DOMContentLoaded", () => {
+   document.body.classList.remove("light");
+  });
     const map = { A: '00', C: '01', G: '10', T: '11' };
     const rev = Object.fromEntries(Object.entries(map).map(([k,v])=>[v,k]));
 
